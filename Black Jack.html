@@ -1,0 +1,71 @@
+<meta charset="utf-8">
+<script>
+function getRandomInt(min, max) {
+	return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+function getCard() {
+	var cards = ['6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
+	return cards[getRandomInt(0, cards.length - 1)];
+}
+function getSum(arr) {
+	var sum = 0;
+	var i = 0;
+	for (i = 0; i < arr.length; i++) {
+		if (arr[i] != 'A') {
+			if (arr[i] == 'J' || arr[i] == 'Q' || arr[i] == 'K') {
+				sum = sum + 10;
+			} else {
+				sum = sum + parseInt(arr[i]);
+			}
+		} else if (arr[i] == 'A') {
+			if (sum > 10) {
+				sum = sum + 1;
+			} else {
+				sum = sum + 11;
+			}
+		}
+	}
+	return sum;
+}
+function getStatus() {
+	return 'Дилер: ' + dealer.join(' ') + '. Игрок: ' + player.join(' ') + '.';
+}
+var dealer = [getCard()];
+var player = [getCard(), getCard()];
+var answer = 'да';
+var result = '';
+if (getSum(player) == 21) {
+	result = 'У Вас Блэкджек на раздаче! Вы выйграли';
+} else {
+	do {
+		if (getSum(player) < 21) {
+			answer = prompt(getStatus() + ' Хотите ещё карту? Ответьте «да» или «нет».');
+			if (answer == 'да') {
+				player.push(getCard());
+			} else {
+				while (getSum(dealer) < 17) {
+					dealer.push(getCard());
+				};
+				if (getSum(dealer) == 21) {
+					result = 'У дилера Блэкджек! Вы проиграли';
+				} else if (getSum(dealer) > 21) {
+					result = 'У дилера перебор! Вы выйграли';
+				} else if (getSum(dealer) == getSum(player)) {
+					result = 'Ничья';
+				} else if (getSum(dealer) < getSum(player)) {
+					result = 'Вы выйграли';
+				} else {
+					result = 'Вы проиграли';
+				}
+			}
+		} else if (getSum(player) == 21) {
+			result = 'У Вас Блэкджек! =) Вы выйграли';
+			break;
+		} else if (getSum(player) > 21) {
+			result = 'У Вас перебор! =( Вы проиграли';
+			break;
+		}
+	} while (answer == 'да');
+}
+alert(result + ' со счетом: ' + getSum(player) + '/' + getSum(dealer) + '. ' + getStatus());
+</script>
