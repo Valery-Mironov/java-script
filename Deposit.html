@@ -1,0 +1,11 @@
+<meta charset="utf-8">
+<script>
+var amount = parseInt(prompt('Введите сумму вклада'));
+var apr = parseInt(prompt('Введите годовую процентную ставку'));
+var maturity = parseInt(prompt('Введите срок вклада'));
+var year;
+for (year = 1; year <= maturity; year++) {
+	amount = amount + (amount / 100 * apr);
+	alert('За ' + year + ' год, сбережения составят: ' + amount + ' рублей.');
+}
+</script>
