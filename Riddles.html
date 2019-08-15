@@ -1,0 +1,27 @@
+<meta charset="utf-8">
+<script>
+var score = 0;
+var answer = '';
+answer = prompt('Я могу быть в толпе, но всегда отличаюсь.');
+if (answer == 'тень') {
+	score = score + 1;
+	alert('Верно!');
+} else {
+	alert('Неверно!');
+}
+answer = prompt('Я стучу без рук, хожу без ног и показываю без пальцев.');
+if (answer == 'часы') {
+	score = score + 1;
+	alert('Верно!');
+} else {
+	alert('Неверно!');
+}
+answer = prompt('Крепка как скала, но рушится от слова.');
+if (answer == 'тишина') {
+	score = score + 1;
+	alert('Верно!');
+} else {
+	alert('Неверно!');
+}
+alert('Правильно отгадано: ' + score + ' загадки из 3-х');
+</script>
